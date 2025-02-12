@@ -52,3 +52,5 @@ position = Vector2(24, 0)
 shape = SubResource("RectangleShape2D_yeyg6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
