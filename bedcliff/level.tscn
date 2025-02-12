@@ -12,29 +12,31 @@ size = Vector2(1012, 20)
 
 [node name="Node2D" type="Node2D"]
 
-[node name="RigidBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(-274, -123)
-script = ExtResource("1_s27hq")
+[node name="TopBed" type="CharacterBody2D" parent="." node_paths=PackedStringArray("bed")]
+position = Vector2(-290, -286)
+collision_layer = 0
+script = ExtResource("3_tdyr3")
+bed = NodePath("../BottomCliff")
 
-[node name="SpaceBar" type="Sprite2D" parent="RigidBody2D"]
+[node name="SpaceBar" type="Sprite2D" parent="TopBed"]
 position = Vector2(91.5775, 47)
 scale = Vector2(0.198233, 1)
 texture = ExtResource("1_emoj7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBed"]
 position = Vector2(91.345, 48)
 shape = SubResource("RectangleShape2D_yebgo")
 
-[node name="RigidBody2D2" type="CharacterBody2D" parent="RigidBody2D"]
-position = Vector2(-0.744995, -72)
-script = ExtResource("3_tdyr3")
+[node name="BottomCliff" type="CharacterBody2D" parent="."]
+position = Vector2(-288, -128)
+script = ExtResource("1_s27hq")
 
-[node name="SpaceBar" type="Sprite2D" parent="RigidBody2D/RigidBody2D2"]
+[node name="SpaceBar" type="Sprite2D" parent="BottomCliff"]
 position = Vector2(91.5775, 47)
 scale = Vector2(0.198233, 1)
 texture = ExtResource("1_emoj7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/RigidBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomCliff"]
 position = Vector2(91.345, 48)
 shape = SubResource("RectangleShape2D_yebgo")
 
@@ -52,5 +54,6 @@ position = Vector2(24, 0)
 shape = SubResource("RectangleShape2D_yeyg6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(68, -290)
 
 [node name="Timer" type="Timer" parent="."]
