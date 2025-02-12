@@ -1,60 +1,44 @@
-[gd_scene load_steps=7 format=3 uid="uid://bm50u24u2n4py"]
+[gd_scene load_steps=6 format=3 uid="uid://bm50u24u2n4py"]
 
 [ext_resource type="Texture2D" uid="uid://ink4tstalxjr" path="res://sprites/SpaceBar.png" id="1_emoj7"]
-[ext_resource type="Script" path="res://bottom.gd" id="1_wctw6"]
-[ext_resource type="Script" path="res://top.gd" id="3_k7br5"]
+[ext_resource type="Script" path="res://rigid_body_2d.gd" id="1_s27hq"]
+[ext_resource type="Script" path="res://rigid_body_2d_2.gd" id="3_tdyr3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yebgo"]
 size = Vector2(84, 70)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6no6c"]
-size = Vector2(20, 0.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yeyg6"]
 size = Vector2(1012, 20)
 
 [node name="Node2D" type="Node2D"]
 
-[node name="top" type="CharacterBody2D" parent="."]
-position = Vector2(-274.745, -200.715)
-slide_on_ceiling = false
-floor_stop_on_slope = false
-floor_constant_speed = true
-floor_block_on_wall = false
-script = ExtResource("3_k7br5")
+[node name="TopBed" type="CharacterBody2D" parent="." node_paths=PackedStringArray("bed")]
+position = Vector2(-290, -286)
+collision_layer = 0
+script = ExtResource("3_tdyr3")
+bed = NodePath("../BottomCliff")
 
-[node name="SpaceBar" type="Sprite2D" parent="top"]
+[node name="SpaceBar" type="Sprite2D" parent="TopBed"]
 position = Vector2(91.5775, 47)
 scale = Vector2(0.198233, 1)
 texture = ExtResource("1_emoj7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="top"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBed"]
 position = Vector2(91.345, 48)
 shape = SubResource("RectangleShape2D_yebgo")
 
-[node name="bottom" type="CharacterBody2D" parent="."]
-position = Vector2(-274, -123)
-slide_on_ceiling = false
-floor_stop_on_slope = false
-floor_constant_speed = true
-floor_block_on_wall = false
-script = ExtResource("1_wctw6")
+[node name="BottomCliff" type="CharacterBody2D" parent="."]
+position = Vector2(-288, -128)
+script = ExtResource("1_s27hq")
 
-[node name="SpaceBar" type="Sprite2D" parent="bottom"]
+[node name="SpaceBar" type="Sprite2D" parent="BottomCliff"]
 position = Vector2(91.5775, 47)
 scale = Vector2(0.198233, 1)
 texture = ExtResource("1_emoj7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomCliff"]
 position = Vector2(91.345, 48)
 shape = SubResource("RectangleShape2D_yebgo")
-
-[node name="box" type="Area2D" parent="bottom"]
-position = Vector2(91, 12)
-
-[node name="box_col" type="CollisionShape2D" parent="bottom/box"]
-position = Vector2(0, 0.25)
-shape = SubResource("RectangleShape2D_6no6c")
 
 [node name="Area2D" type="StaticBody2D" parent="."]
 
@@ -70,5 +54,6 @@ position = Vector2(24, 0)
 shape = SubResource("RectangleShape2D_yeyg6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(68, -290)
 
-[connection signal="area_entered" from="bottom/box" to="top" method="_on_box_area_entered"]
+[node name="Timer" type="Timer" parent="."]
