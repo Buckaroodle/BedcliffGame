@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://g2rm7k4iwsru"]
+
+[ext_resource type="Script" path="res://top.gd" id="1_iq67b"]
+[ext_resource type="Texture2D" uid="uid://ink4tstalxjr" path="res://sprites/SpaceBar.png" id="2_khsnt"]
+[ext_resource type="Script" path="res://bottom.gd" id="3_0b43k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yebgo"]
+size = Vector2(84, 70)
+
+[node name="Player" type="Node2D"]
+
+[node name="TopBed" type="CharacterBody2D" parent="." node_paths=PackedStringArray("bed")]
+position = Vector2(-3, -196)
+collision_layer = 0
+script = ExtResource("3_0b43k")
+bed = NodePath("../BottomCliff")
+
+[node name="SpaceBar" type="Sprite2D" parent="TopBed"]
+scale = Vector2(0.198233, 1)
+texture = ExtResource("2_khsnt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBed"]
+shape = SubResource("RectangleShape2D_yebgo")
+
+[node name="BottomCliff" type="CharacterBody2D" parent="."]
+position = Vector2(-3, -40)
+script = ExtResource("1_iq67b")
+
+[node name="SpaceBar" type="Sprite2D" parent="BottomCliff"]
+scale = Vector2(0.198233, 1)
+texture = ExtResource("2_khsnt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomCliff"]
+shape = SubResource("RectangleShape2D_yebgo")

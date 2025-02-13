@@ -19,7 +19,7 @@ func _physics_process(delta):
 		
 func _process(delta):
 	global_position.x = bed.global_position.x
-
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	# var direction = Input.get_axis("left", "right")
