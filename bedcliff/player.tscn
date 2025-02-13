@@ -16,10 +16,11 @@ script = ExtResource("3_0b43k")
 bed = NodePath("../BottomCliff")
 
 [node name="SpaceBar" type="Sprite2D" parent="TopBed"]
-scale = Vector2(0.198233, 1)
+scale = Vector2(0.248, 1.25)
 texture = ExtResource("2_khsnt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopBed"]
+scale = Vector2(1.285, 1.285)
 shape = SubResource("RectangleShape2D_yebgo")
 
 [node name="BottomCliff" type="CharacterBody2D" parent="."]
@@ -27,8 +28,14 @@ position = Vector2(-3, -40)
 script = ExtResource("1_iq67b")
 
 [node name="SpaceBar" type="Sprite2D" parent="BottomCliff"]
-scale = Vector2(0.198233, 1)
+position = Vector2(-1, 0)
+scale = Vector2(0.248, 1.25)
 texture = ExtResource("2_khsnt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomCliff"]
+scale = Vector2(1.285, 1.285)
 shape = SubResource("RectangleShape2D_yebgo")
+
+[node name="Camera2D" type="Camera2D" parent="BottomCliff"]
+position = Vector2(0, -153)
+scale = Vector2(1.285, 1.285)
