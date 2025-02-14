@@ -12,9 +12,10 @@ size = Vector2(84, 70)
 
 [node name="player" type="Node2D"]
 
-[node name="BottomCliff" type="CharacterBody2D" parent="."]
+[node name="BottomCliff" type="CharacterBody2D" parent="." node_paths=PackedStringArray("top")]
 position = Vector2(0, -40)
 script = ExtResource("1_qmeo2")
+top = NodePath("../TopBed")
 
 [node name="SpaceBar" type="Sprite2D" parent="BottomCliff"]
 position = Vector2(-1, 0)
@@ -32,7 +33,7 @@ zoom = Vector2(0.75, 0.75)
 
 [node name="TopBed" type="CharacterBody2D" parent="." node_paths=PackedStringArray("bottom")]
 position = Vector2(0, -236)
-collision_layer = 0
+collision_layer = 2
 script = ExtResource("3_td6dj")
 bottom = NodePath("../BottomCliff")
 
