@@ -1,28 +1,109 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqybht4yh6mqy"]
+[gd_scene load_steps=16 format=3 uid="uid://bqybht4yh6mqy"]
 
 [ext_resource type="Script" path="res://gd_files/bottom_cliff.gd" id="1_qmeo2"]
-[ext_resource type="Texture2D" uid="uid://ink4tstalxjr" path="res://sprites/SpaceBar.png" id="2_j6c74"]
+[ext_resource type="Texture2D" uid="uid://bum6qt1j3ijce" path="res://sprites/bedcliffspritesheet.png" id="3_pnv32"]
 [ext_resource type="Script" path="res://gd_files/top_bed.gd" id="3_td6dj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ubmiu"]
-size = Vector2(84, 70)
+size = Vector2(84, 38.1128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xxpb"]
+atlas = ExtResource("3_pnv32")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20o1v"]
+atlas = ExtResource("3_pnv32")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kiaii"]
+atlas = ExtResource("3_pnv32")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gugex"]
+atlas = ExtResource("3_pnv32")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_po2kv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xxpb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20o1v")
+}],
+"loop": true,
+"name": &"BottomCliffIdle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kiaii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gugex")
+}],
+"loop": true,
+"name": &"BottomCliffMove",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ov1ac"]
-size = Vector2(84, 70)
+size = Vector2(64.4125, 62.393)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcsjv"]
+atlas = ExtResource("3_pnv32")
+region = Rect2(0, 106, 100, 94)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kk7q"]
+atlas = ExtResource("3_pnv32")
+region = Rect2(100, 106, 100, 94)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rca2"]
+atlas = ExtResource("3_pnv32")
+region = Rect2(0, 106, 100, 94)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8dtd"]
+atlas = ExtResource("3_pnv32")
+region = Rect2(200, 106, 100, 94)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_41yv0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcsjv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kk7q")
+}],
+"loop": true,
+"name": &"TopBedIdle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rca2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8dtd")
+}],
+"loop": true,
+"name": &"TopBedMove",
+"speed": 5.0
+}]
 
 [node name="player" type="Node2D"]
 
-[node name="BottomCliff" type="CharacterBody2D" parent="." node_paths=PackedStringArray("top")]
+[node name="BottomCliff" type="CharacterBody2D" parent="." node_paths=PackedStringArray("top", "bottomCliffAnimation", "topBedAnimation")]
 position = Vector2(0, -40)
+scale = Vector2(1.25, 1.25)
 script = ExtResource("1_qmeo2")
 top = NodePath("../TopBed")
-
-[node name="SpaceBar" type="Sprite2D" parent="BottomCliff"]
-position = Vector2(-1, 0)
-scale = Vector2(0.248, 1.25)
-texture = ExtResource("2_j6c74")
+bottomCliffAnimation = NodePath("AnimatedSprite2D")
+topBedAnimation = NodePath("../TopBed/AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomCliff"]
+position = Vector2(0, 20.4875)
 scale = Vector2(1.285, 1.285)
 shape = SubResource("RectangleShape2D_ubmiu")
 
@@ -31,16 +112,27 @@ position = Vector2(0, -153)
 scale = Vector2(1.285, 1.285)
 zoom = Vector2(0.75, 0.75)
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BottomCliff"]
+sprite_frames = SubResource("SpriteFrames_po2kv")
+animation = &"BottomCliffIdle"
+autoplay = "BottomCliffIdle"
+frame = 1
+frame_progress = 0.0857493
+
 [node name="TopBed" type="CharacterBody2D" parent="." node_paths=PackedStringArray("bottom")]
 position = Vector2(0, -236)
-collision_layer = 2
+scale = Vector2(1.25, 1.25)
+collision_layer = 0
+platform_on_leave = 2
 script = ExtResource("3_td6dj")
 bottom = NodePath("../BottomCliff")
 
-[node name="SpaceBar" type="Sprite2D" parent="TopBed"]
-scale = Vector2(0.248, 1.25)
-texture = ExtResource("2_j6c74")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopBed"]
+position = Vector2(-12.585, 4.88748)
 scale = Vector2(1.285, 1.285)
 shape = SubResource("RectangleShape2D_ov1ac")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TopBed"]
+sprite_frames = SubResource("SpriteFrames_41yv0")
+animation = &"TopBedIdle"
+autoplay = "TopBedIdle"
