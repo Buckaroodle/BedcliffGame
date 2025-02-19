@@ -4,7 +4,7 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -450.0
 
-@export var bottom : Node2D 
+@export var bottom : CharacterBody2D
 
 func _physics_process(delta):
 	# Add the gravity.
