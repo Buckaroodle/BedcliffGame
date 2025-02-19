@@ -122,7 +122,7 @@ frame_progress = 0.0857493
 [node name="TopBed" type="CharacterBody2D" parent="." node_paths=PackedStringArray("bottom")]
 position = Vector2(0, -236)
 scale = Vector2(1.25, 1.25)
-collision_layer = 0
+collision_layer = 2
 platform_on_leave = 2
 script = ExtResource("3_td6dj")
 bottom = NodePath("../BottomCliff")

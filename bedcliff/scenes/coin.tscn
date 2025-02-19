@@ -7,6 +7,7 @@
 radius = 49.0408
 
 [node name="coin" type="Area2D"]
+collision_mask = 3
 script = ExtResource("1_wcrl8")
 
 [node name="Coin" type="Sprite2D" parent="."]
