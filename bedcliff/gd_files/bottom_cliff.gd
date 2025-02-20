@@ -5,8 +5,13 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -525.0
 
 @export var top: CharacterBody2D
+@export var bottom: CharacterBody2D
+@export var player: Node2D
 @export var bottomCliffAnimation: AnimatedSprite2D
 @export var topBedAnimation: AnimatedSprite2D
+#@export var topCol: CollisionShape2D
+#@export var bottomCol: CollisionShape2D
+#@export var bottomCol2: CollisionShape2D
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -24,12 +29,21 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("left", "right")
+	#print(direction)
 	if direction < 0: # Flips direction of sprite when moving left
 		bottomCliffAnimation.flip_h = true
 		topBedAnimation.flip_h = true
-	elif direction > 0: # Flips direction of sprite when moving right (and keeps direction when direction is 0)
+		#bottomCol.scale.x = -1.285
+		#bottomCol2.scale.x = -.231
+		#topCol.scale.x = -1.285
+		#attempting to flip collisions too
+	else: #direction > 0: # Flips direction of sprite when moving right (and keeps direction when direction is 0)
 		bottomCliffAnimation.flip_h = false
 		topBedAnimation.flip_h = false
+		#bottomCol.scale.x = 1.285
+		#bottomCol2.scale.x = .231
+		#topCol.scale.x = 1.285
+		#attempting to flip collisions too
 	if direction:
 		velocity.x = direction * SPEED
 		if is_on_floor():
