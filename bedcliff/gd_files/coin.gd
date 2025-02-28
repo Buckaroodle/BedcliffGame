@@ -16,6 +16,6 @@ func _on_body_entered(body):
 		var playsfx = coinSoundEffect.instantiate()
 		var parent = self.get_parent()
 		parent.add_child(playsfx)
-		print ("hi")
-		# await get_tree().create_timer(.78).timeout
+		#print ("hi")
+		#await get_tree().create_timer(.78).timeout
 		queue_free()

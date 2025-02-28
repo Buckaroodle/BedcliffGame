@@ -11,7 +11,7 @@ radius = 24.7386
 collision_mask = 3
 script = ExtResource("1_wcrl8")
 
-[node name="Coin" type="Sprite2D" parent="."]
+[node name="Coin" type="Sprite2D" parent="." groups=["player"]]
 texture = ExtResource("2_31qvd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
